@@ -14,13 +14,14 @@ app.logger.setLevel(logging.DEBUG)
 
 @app.route('/', methods=['GET'])
 def get_hello_world():
+    app.logger.debug(f"{request.remote_addr} {request.method} {request.path}")
     return json.dumps(hello_world)
 
 
 @app.route('/', methods=['POST'])
 def post_log_request_body():
     if request.is_json:
-        app.logger.debug(json.dumps(request.get_json()))
+        app.logger.debug(f"{request.remote_addr} {request.method} {request.path} {json.dumps(request.get_json())}")
         return json.dumps(request.get_json())
 
 
