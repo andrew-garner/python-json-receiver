@@ -15,6 +15,7 @@ def get_hello_world():
 @app.route('/', methods=['POST'])
 def post_log_request_body():
     if request.is_json:
+        print(json.dumps(request.get_json()))
         return json.dumps(request.get_json())
 
 
