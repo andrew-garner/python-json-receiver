@@ -24,17 +24,13 @@ def post_log_request_body():
     app.logger.debug(f"Content length: {request.content_length}")
     app.logger.debug(f"Content type: {request.content_type}")
     app.logger.debug(f"All headers: {request.headers}")
-    stream_data = request.stream.read()
-    app.logger.debug(f"Stream data: {stream_data}")
+    data = request.get_data()
+    app.logger.debug(f"Request Data: {data}")
     
     if request.is_json:
         app.logger.debug(f"Received JSON: {json.dumps(request.get_json())}")
         return json.dumps({request.get_json()})
     
-    if request.form:
-        app.logger.debug(f"Received form data: {request.form}")
-    
-    app.logger.debug(f"Received data: {request.values}")
     return json.dumps({"request":"POST"})
 
 
