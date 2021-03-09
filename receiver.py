@@ -24,6 +24,8 @@ def post_log_request_body():
     app.logger.debug(f"Content length: {request.content_length}")
     app.logger.debug(f"Content type: {request.content_type}")
     app.logger.debug(f"All headers: {request.headers}")
+    stream_data = request.stream.read()
+    app.logger.debug(f"Stream data: {stream_data}")
     
     if request.is_json:
         app.logger.debug(f"Received JSON: {json.dumps(request.get_json())}")
