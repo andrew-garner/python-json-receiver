@@ -20,8 +20,9 @@ def get_hello_world():
 
 @app.route('/', methods=['POST'])
 def post_log_request_body():
+    app.logger.debug(f"{request.remote_addr} {request.method} {request.path}")
     if request.is_json:
-        app.logger.debug(f"{request.remote_addr} {request.method} {request.path} {json.dumps(request.get_json())}")
+        app.logger.debug(f"{json.dumps(request.get_json())}")
         return json.dumps(request.get_json())
 
 
