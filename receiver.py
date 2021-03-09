@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
+import pprint
 
 from flask import Flask, json, request
 
@@ -25,7 +26,7 @@ def post_log_request_body():
     app.logger.debug(f"Content type: {request.content_type}")
     app.logger.debug(f"All headers: {request.headers}")
     data = request.get_data()
-    app.logger.debug(f"Request Data: {data}")
+    app.logger.debug(f"Request Data: {pprint.pprint(data)}")
     
     if request.is_json:
         app.logger.debug(f"Received JSON: {json.dumps(request.get_json())}")
