@@ -29,6 +29,9 @@ def post_log_request_body():
         app.logger.debug(f"Received JSON: {json.dumps(request.get_json())}")
         return json.dumps({request.get_json()})
     
+    if request.form:
+        app.logger.debug(f"Received form data: {request.form}")
+    
     app.logger.debug(f"Received data: {request.values}")
     return json.dumps({"request":"POST"})
 
