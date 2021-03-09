@@ -22,8 +22,11 @@ def get_hello_world():
 def post_log_request_body():
     app.logger.debug(f"{request.remote_addr} {request.method} {request.path}")
     if request.is_json:
-        app.logger.debug(f"{json.dumps(request.get_json())}")
-        return json.dumps(request.get_json())
+        app.logger.debug(f"Received JSON: {json.dumps(request.get_json())}")
+        return json.dumps({request.get_json()})
+    
+    app.logger.debug(f"Received data: {request.values}")
+    return json.dumps({"request":"POST"})
 
 
 if __name__ == '__main__':
