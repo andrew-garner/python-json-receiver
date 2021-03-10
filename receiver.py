@@ -32,7 +32,7 @@ def post_log_request_body():
         app.logger.debug(f"Received JSON: {json.dumps(request.get_json())}")
         return json.dumps({request.get_json()})
     
-    json_data = request.get_json(force=True, silence=True, cache=True)
+    json_data = request.get_json(force=True, silent=True, cache=True)
     app.logger.debug(f"Received JSON: {json.dumps(json_data)}")
     
     return json.dumps({"request":"POST"})
